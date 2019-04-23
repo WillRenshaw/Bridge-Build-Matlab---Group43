@@ -50,7 +50,7 @@ load = 0;
 step = 0.001;
 while (solved == false) %Loop through until solved
     load = load + step; %increment load on each loop iteration
-    IL = load/5; %Calculate the individual load of each loading point
+    IL = load/10; %Calculate the individual load of each loading point
     b = [0;0;0;IL;0;IL;0;IL;0;IL;0;IL;0;0;0;0;0;0;0;0;0;0;0;0]; %Output vector
     x = A\b; %solve for unknown forces
     if(max(x > abs(breakingLoads)) ~= 0) %calculate if any values exceed the relevant breaking load
