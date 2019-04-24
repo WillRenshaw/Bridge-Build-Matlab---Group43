@@ -10,7 +10,7 @@ s = sin(0.89605204);
 c = cos(0.89605204);
 
 %The names of all unknown forces
-names = ["FAB";"FBC";"FCD";"FDE";"FEF";"FFG";"FAI";"FBI";"FCI";"FCJ";"FDJ";"FDK";"FDL";"FEL";"FEM";"FFM";"FGM";"FIJ";"FJK";"FKL";"FLM";"RA";"RG"];
+names = ["AB";"BC";"CD";"DE";"EF";"FG";"AI";"BI";"CI";"CJ";"DJ";"DK";"DL";"EL";"EM";"FM";"GM";"IJ";"JK";"KL";"LM";"RA";"RG"];
 
 aF = 29;%Failure load for members in tension
 bF = 58.6;%Failure load for 10x6x125
@@ -47,7 +47,7 @@ A = [1	0	0	0	0	0	c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
 %Initial variable set up
 solved = false;
 load = 0;
-step = 0.001;
+step = 0.1;
 while (solved == false) %Loop through until solved
     load = load + step; %increment load on each loop iteration
     IL = load/10; %Calculate the individual load of each loading point
