@@ -1,3 +1,5 @@
+%group 43 coursework
+
 function varargout = GUI(varargin)
 % GUI MATLAB code for GUI.fig
 %      GUI, by itself, creates a new GUI or raises the existing
@@ -172,42 +174,45 @@ end
 
 % --- Executes on button press in CalculateFailure.
 function CalculateFailure_Callback(hObject, eventdata, handles)
-    s = sin(0.89605204);
-    c = cos(0.89605204);
+    s = sin(atan(1.25)); %Values for sin and cos theta
+    c = cos(atan(1.25));
 
     %The names of all unknown forces
-    names = ["AB";"BC";"CD";"DE";"EF";"FG";"AI";"BI";"CI";"CJ";"DJ";"DK";"DL";"EL";"EM";"FM";"GM";"IJ";"JK";"KL";"LM";"RA";"RG"];
-    A = [1	0	0	0	0	0	c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	s	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0
-        -1	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	-1	1	0	0	0	0	0	-c	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	s	1	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	-1	1	0	0	0	0	0	0	-c	0	c	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	s	1	s	0	0	0	0	0	0	0	0	0	0
-        0	0	0	-1	1	0	0	0	0	0	0	0	0	0	c	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	1	s	0	0	0	0	0	0	0	0
-        0	0	0	0	-1	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
-        0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	-c	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	s	0	0	0	0	0	1
-        0	0	0	0	0	0	-c	0	c	0	0	0	0	0	0	0	0	1	0	0	0	0	0
-        0	0	0	0	0	0	-s	-1	-s	0	0	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	c	0	0	0	0	0	0	-1	1	0	0	0	0
-        0	0	0	0	0	0	0	0	0	-1	-s	0	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	1	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	-c	0	0	0	0	0	0	-1	1	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	-s	-1	0	0	0	0	0	0	0	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	0	-c	0	c	0	0	0	-1	0	0
-        0	0	0	0	0	0	0	0	0	0	0	0	0	0	-s	-1	-s	0	0	0	0	0	0]; %Matrix containing all simultaneous equations
+    names = ["F1";"F2";"F3";"F4";"F5";"F6";"F7";"F8";"F9";"F10";"F11";"F12";"F13";"F14";"F15";"F16";"F17";"F18";"F19";"F20";"F21";"Rx1";"Ry1";"Rx2";"Ry2"];
+    %names of all members corresponding to forces
+    memberNames = ["AB";"AC";"BC";"BD";"BE";"CE";"DE";"DF";"DG";"EG";"FG";"FH";"GH";"GI";"HI";"HJ";"IJ";"IK";"JK";"JL";"KL";];
+    %Matrix containing all simultaenous equations
+    A = [c	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0
+    s	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0
+    -c	0	0	1	c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    -s	0	-1	0	-s	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	-1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	-1	0	0	0	1	c	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	-1	0	-s	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	-c	-1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	s	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	-1	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	-1	0	0	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	-c	-1	0	0	c	1	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	s	0	1	0	s	0	0	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	-1	-c	0	0	1	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	-s	0	-1	0	0	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0	c	1	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	s	0	0	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	-c	0	0	c	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-s	0	-1	-s	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-1	0	0	1	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	-c	-1	0	0	-1	0
+    0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	s	0	0	0	0	1];
 
-    aF = str2num(get(handles.TensionBox, 'String'));%Failure load for members in tension
-    bF = str2num(get(handles.edit2, 'String'));%Failure load for 10x6x125
-    cF = str2num(get(handles.edit3, 'String'));%Failure load for 10x10x100
-    dF = str2num(get(handles.edit410x10x160Box, 'String'));%Failure load for 10x10x160
-    breakingLoads = [aF;aF;aF;aF;aF;aF;dF;aF;aF;bF;aF;bF;aF;bF;aF;aF;dF;cF;cF;cF;cF;99999;99999]; %Vector containing all failure loads for all members
-    
+    af = 2 * str2num(get(handles.TensionBox, 'String'));%Failure load for members in tension
+    bf = str2num(get(handles.edit2, 'String'));%Failure load for 10x6x125
+    cf = str2num(get(handles.edit3, 'String'));%Failure load for 10x10x100
+    df = str2num(get(handles.edit410x10x160Box, 'String'));%Failure load for 10x10x160
+    breakingLoads = [df,af,bf,cf,af,af,bf,cf,af,af,bf,cf,af,af,bf,cf,af,af,bf,df,af,99999999,9999999,99999999,9999999]; %Vector containing all failure loads for all members
+
     
     %Initial variable set up
     solved = false;
@@ -217,13 +222,14 @@ function CalculateFailure_Callback(hObject, eventdata, handles)
     while (solved == false) %Loop through until solved
         load = load + step; %increment load on each loop iteration
         IL = load/10; %Calculate the individual load of each loading point
-        b = [0;0;0;IL;0;IL;0;IL;0;IL;0;IL;0;0;0;0;0;0;0;0;0;0;0;0]; %Output vector
+        b = [0;0;0;0;0;IL;0;0;0;IL;0;0;0;IL;0;0;0;IL;0;0;0;IL;0;0]; %Output vector
         x = A\b; %solve for unknown forces
-        if(max(x > abs(breakingLoads)) ~= 0) %calculate if any values exceed the relevant breaking load
+        if(max(max(x > abs(breakingLoads)) ~= 0)) %calculate if any values exceed the relevant breaking load
             solved = true; %If so stop the loop
-            [~, idx] = max(x > abs(breakingLoads)); %get the index of the broken member
-            disp(["Broken Member is ", names(idx), ' at a load of ',load - step, 'N']); %display to user
-            set(handles.edit5, 'String', strcat("Broken Member is ", names(idx), " at a load of ", num2str(load-step), "N"));
+            [~, idx] = max(max(x > abs(breakingLoads))); %get the index of the broken member
+            disp(["Broken Member is ", memberNames(idx), ' when force', names(idx), ' reached a load of ',load - step, 'N']); %display to console
+            %change value of outputbox on gui to show result
+            set(handles.edit5, 'String', strcat("Broken Member is ", memberNames(idx), ' when force '," ", names(idx), ' reached a load of:  ',num2str(load - step), 'N'));
         end
     end
 end
