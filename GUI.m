@@ -211,7 +211,7 @@ function CalculateFailure_Callback(hObject, eventdata, handles)
     bf = str2num(get(handles.edit2, 'String'));%Failure load for 10x6x125
     cf = str2num(get(handles.edit3, 'String'));%Failure load for 10x10x100
     df = str2num(get(handles.edit410x10x160Box, 'String'));%Failure load for 10x10x160
-    breakingLoads = [df,af,bf,cf,af,af,bf,cf,af,af,bf,cf,af,af,bf,cf,af,af,bf,df,af,99999999,9999999,99999999,9999999]; %Vector containing all failure loads for all members
+    breakingLoads = [df,af,af,cf,af,af,bf,cf,af,af,bf,cf,af,af,bf,cf,af,af,af,df,af,99999999,9999999,99999999,9999999]; %Vector containing all failure loads for all members
 
     
     %Initial variable set up
